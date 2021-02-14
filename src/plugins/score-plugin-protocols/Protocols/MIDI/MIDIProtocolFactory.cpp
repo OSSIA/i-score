@@ -28,8 +28,7 @@ public:
   {
     try
     {
-      auto prot = std::make_unique<ossia::net::midi::midi_protocol>();
-      auto vec = prot->scan();
+      auto vec = ossia::net::midi::midi_protocol::scan();
 
       for (auto& elt : vec)
       {
@@ -84,7 +83,7 @@ Device::DeviceInterface* MIDIInputProtocolFactory::makeDevice(
     const Device::DeviceSettings& settings,
     const score::DocumentContext& ctx)
 {
-  return new MIDIDevice{settings};
+  return new MIDIDevice{settings, ctx};
 }
 
 const Device::DeviceSettings& MIDIInputProtocolFactory::defaultSettings() const noexcept
@@ -160,7 +159,7 @@ Device::DeviceInterface* MIDIOutputProtocolFactory::makeDevice(
     const Device::DeviceSettings& settings,
     const score::DocumentContext& ctx)
 {
-  return new MIDIDevice{settings};
+  return new MIDIDevice{settings, ctx};
 }
 
 const Device::DeviceSettings& MIDIOutputProtocolFactory::defaultSettings() const noexcept
