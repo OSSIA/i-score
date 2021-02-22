@@ -7,6 +7,7 @@ ln -s $BUILD_FOLDER build
 docker pull ossia/score-package-linux
 docker run \
            -v "$(pwd)"/cmake/Deployment/Linux/AppImage/Recipe.llvm:/Recipe \
+           -e TOOLCHAIN=appimage \
            --mount type=bind,source="$(pwd)",target=/score \
            --mount type=bind,source="$BUILD_FOLDER",target=/build \
            ossia/score-package-linux \
